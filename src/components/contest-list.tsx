@@ -5,11 +5,11 @@ import { fetchContests } from "../api-client";
 
 const ContestList = ( { initialContests }) => {
     const [contests, setContests] = useState(initialContests)
-    useEffect( () => {
-        fetchContests().then((contests) =>{
-            setContests(contests)}
-        );
-    }, []);
+    // useEffect( () => {
+    //     fetchContests().then((contests) =>{
+    //         setContests(contests)}
+    //     );
+    // }, []);
 
     return (
         <div className="contest-list">

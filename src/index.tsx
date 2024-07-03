@@ -7,4 +7,4 @@ const root = createRoot(container)
 
 
 
-root.render(<App initialData ={{contests: []}}/>);
+root.render(<App initialData ={(window as any).initialData}/>);
