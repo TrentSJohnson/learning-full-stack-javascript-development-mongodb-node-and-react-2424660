@@ -12,13 +12,14 @@ server.set("view engine", "ejs")
 
 server.use("/api", apiRouter)
 
-server.get("/", async (req, res) => {
-    const {initialMarkup, initialData} = await serverRender();
-    res.render("index",{
-        initialMarkup,
-        initialData
-    })
-})
+server.get(["/", "/contest/:contestId"], async (req, res) => {
+    const { initialMarkup, initialData } = await serverRender(req);
+    res.render("index", {
+      initialMarkup,
+      initialData,
+    });
+    console.log(`initial data ${JSON.stringify(initialData)}`);
+  });
 
 server.listen(config.PORT, config.HOST, () => {
     console.info((
