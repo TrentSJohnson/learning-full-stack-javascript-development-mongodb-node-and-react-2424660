@@ -1,4 +1,4 @@
-import { fetchContest, } from "../api-client";
+import { addNewNameToContest, fetchContest, } from "../api-client";
 import {useState, useEffect } from "react"
 
 
@@ -15,6 +15,16 @@ const Contest = ({initialContest, onContestListLink}) => {
 
     const handClickonContestList= (event) => {
         return onContestListLink();
+    }
+
+    const handleNewNameSubmit = async (event) => {
+        event.preventDefault();
+        console.log("handling submit");
+        const newNameInput = event.target.newName;
+        console.log(event);
+        const updatedContest = await addNewNameToContest({contestId: contest.id, newNameValue: newNameInput.value});
+        console.log(updatedContest);
+        setContest(updatedContest);
     }
 
     return (
@@ -34,6 +44,18 @@ const Contest = ({initialContest, onContestListLink}) => {
                 ): <div> No names proposed</div>
             }
             </div>
+
+            <div className="body">
+                <form onSubmit={handleNewNameSubmit}>
+                    <input type="text"
+                        name="newName"
+                        placeholder="New name here..."
+                    />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+
             <a link="/" className="link" onClick={handClickonContestList}>Contest List</a>
         </div>
     )

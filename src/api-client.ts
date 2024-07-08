@@ -13,3 +13,17 @@ export const fetchContest = async (contestId) => {
     console.log(`fetch init ${JSON.stringify((resp.data))}`)
     return resp.data.contest;
 };
+
+
+export const addNewNameToContest = async ({contestId, newNameValue}) => {
+    console.log("axcios send");
+    console.log(contestId);
+    console.log(newNameValue);
+    const resp = await axios.post(
+        `${API_SERVER_URL}/contest/${contestId}`,
+        {newNameValue}
+    );
+    console.log(`axios resp ${resp.data.updatedContest}`);
+
+    return resp.data.updatedContest;
+};
